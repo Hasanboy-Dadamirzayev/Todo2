@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ogohlantirish</title>
+    <link rel="stylesheet" href="{% static 'delete.css' %}">
+    <style>
+        /* A tegidan tagiga chiziqni olib tashlash */
+        a {
+            text-decoration: none;
+            color: inherit; /* tugma rangi bilan bir xil qilish uchun */
+        }
+    </style>
+</head>
+<body>
+    <div class="modal-overlay">
+        <div class="confirmation-modal">
+            <div class="modal-header">
+                <svg class="warning-icon" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M12,2L1,21H23M12,6L19.5,19H4.5M11,10V14H13V10M11,16V18H13V16"/>
+                </svg>
+                <h3>Ogohlantirish</h3>
+            </div>
+
+            <div class="modal-body">
+                <p>Ishonchingiz komilmi buni o'chirishga (<strong>{{ task.title }}</strong>)?:</p>
+                <p class="warning-note">Hozirgi ma'lumotlar butunlay o'chirib tashlanadi!</p>
+            </div>
+
+            <div class="modal-footer">
+                <a href="{% url 'home' %}" class="cancel-btn">Cancel</a>
+                <a href="/task/{{ task.id }}/delete/" class="confirm-btn">Delete</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

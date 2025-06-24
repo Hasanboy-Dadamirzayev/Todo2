@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>To-Do List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+  </head>
+  <body>
+    <div class="container">
+        <div class="head">
+            <h1>To-Do List</h1>
+            <div style="display: flex; align-items: center;">
+                <h3>User</h3>
+                <a href="./login.html" style="text-decoration: none; color: red;">
+                Log out
+                </a>
+            </div>
+      </div>
+
+      <div class="task-add">
+        <form id="task-form" method="post">
+            {% csrf_token %}
+            <div class="form1">
+              <input type="text" name="title" placeholder="Add Title..." required>
+              <input type="date" name="date">
+              <select name="status">
+                  {% for i in status %}
+                <option class="opt">
+                    {{ i.0 }}
+                </option>
+                  {% endfor %}
+              </select>
+            </div>
+            <div class="form1">
+              <input type="text" name="details" placeholder="Details ...">
+              <button type="submit" class="btn">Add Task</button>
+            </div>
+          </form>
+      </div>
+      <hr style="margin: 10px 5px;">
+        {% for task in tasks %}
+      <div class="task">
+        <ul id="task-list">
+          <li>
+              <div>
+                  {{ task.title }}
+              </div>
+              <div>
+                    <input type="text" value="{{ task.status }}" readonly >
+                    <input type="date" value="{{ task.date|date:'Y-m-d' }}" readonly>
+                    <button type="button" class="edit"><a href="/task/{{ task.id }}/edit/">Edit</a></button>
+                    <button type="button" class="delete"><a href="/task/{{ task.id }}/confirm/">Delete</a></button>
+              </div>
+          </li>
+        </ul>
+        <ul class="details">
+            {{ task.details }}
+        </ul>
+      </div>
+        {% endfor %}
+    </div>
+
