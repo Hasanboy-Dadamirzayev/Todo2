@@ -1,7 +1,8 @@
 <!DOCTYPE html>
+
 <html>
 <head>
-	<title>Login Page</title>
+	<title>Register Page</title>
 	<style>
 		body {
 			background-color: #f2f2f2;
@@ -52,15 +53,17 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Login Page</h1>
+		<h1>Register Page</h1>
 		<form method="post">
 			{% csrf_token %}
 			<label for="username">Username:</label>
 			<input type="text" name="username" id="username" placeholder="Enter username ...">
-			<label for="password">Password:</label>
-			<input type="password" name="password1" id="password" placeholder="Enter password ...">
-			<button>Login</button>
-			<button><a href="{% url 'register' %}" style="text-decoration: none; color: white;">Register</a></button>
+			<label for="password1">Password:</label>
+			<input type="password" name="password1" id="password1" placeholder="Enter password ...">
+            <label for="password2">Password:</label>
+			<input type="password" name="password2" id="password2" placeholder="Confirm password ...">
+			<button>Register</button>
+			<button><a href="{% url 'login' %}" style="text-decoration: none; color: white;">Login</a></button>
 		</form>
 	</div>
 </body>
